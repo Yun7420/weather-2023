@@ -12,15 +12,14 @@ const CurrentLocalWeather = () => {
   return (
     <div className="currentLocalWeather">
       <p>
-        {todayWeather && todayWeather.name} {textWeek}, {dates} {textMonth}
+        {todayWeather ? todayWeather.name : "Incheon"} {textWeek}, {dates} {textMonth}
         <h2>
-          <span>{todayWeather && todayWeather.main.temp}</span>{" "}
-          {todayWeather && todayWeather.weather[0].description}
+          <span>{todayWeather ? todayWeather.main.temp : "-2.05"}</span> {todayWeather ? todayWeather.weather[0].description : "light snow"}
         </h2>
       </p>
       <img
-        src={process.env.PUBLIC_URL + `/image/weather${todayWeather && todayWeather.weather[0].icon}.svg`}
-        alt={todayWeather && todayWeather.weather[0].icon}
+        src={todayWeather ? process.env.PUBLIC_URL + `/image/weather${todayWeather.weather[0].icon}.svg` : process.env.PUBLIC_URL + "/image/weather13d.svg"}
+        alt={todayWeather ? todayWeather.weather[0].icon : "13d"}
       />
     </div>
   );

@@ -126,7 +126,7 @@ const App = () => {
     setCity,
     forecastWeather,
   };
-
+  
   return (
     <div className="App">
       <div className="AppCover">

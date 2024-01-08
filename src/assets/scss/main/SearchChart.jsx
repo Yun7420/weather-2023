@@ -26,25 +26,27 @@ const SearchChart = () => {
       forecastData.speed.push(forecastWeather[i].wind.speed)
     }
   }
+  
+  console.log(forecastWeather)
 
   const chartData = {
     labels: ["1", "2", "3", "4", "5"],
     datasets: [
       {
         label: "온도",
-        data: forecastData.temp,
+        data: forecastWeather ? forecastData.temp : [-1.02, -0.61, -0.17, 0.56, 1.11],
         borderColor: "#FFE993",
         backgroundColor: "#FFE993",
       },
       {
         label: "습도",
-        data: forecastData.humidity,
+        data: forecastWeather ? forecastData.humidity : [69, 73, 80, 96, 97],
         borderColor: "#B8DAFF",
         backgroundColor: "#B8DAFF",
       },
       {
         label: "풍속",
-        data: forecastData.speed,
+        data: forecastWeather ? forecastData.speed : [2.54, 2.67, 4.59, 3.04, 2.41],
         borderColor: "#B5B1FF",
         backgroundColor: "#B5B1FF",
       },

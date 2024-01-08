@@ -20,7 +20,7 @@ const SearchBox = () => {
 
   return (
     <div className="searchBox">
-      <h2>현재 {todayWeather && todayWeather.name}의 날씨는?</h2>
+      <h2>현재 {todayWeather ? todayWeather.name : "Incheon"}의 날씨는?</h2>
       <form onSubmit={citySubmitHandler}>
         <input onChange={(e) => setSearchCity(e.target.value)} value={searchCity} type="search" placeholder="원하는 도시를 영어로 검색하세요"  />
       </form>

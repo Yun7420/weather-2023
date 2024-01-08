@@ -17,8 +17,8 @@ const SearchInfo = () => {
     <ul className="searchInfo">
       <li>
         <div>
-          <h3>{todayWeather && todayWeather.name}</h3>
-          <p>현재 온도 {todayWeather && todayWeather.main.temp}°C</p>
+          <h3>{todayWeather ? todayWeather.name : "Incheon"}</h3>
+          <p>현재 온도 {todayWeather ? todayWeather.main.temp : -1.06}°C</p>
         </div>
         <div>
           <img src={TemperatureIcon} alt="날씨 이미지 아이콘" />
@@ -26,8 +26,8 @@ const SearchInfo = () => {
       </li>
       <li>
         <div>
-          <h3>{todayWeather && todayWeather.name}</h3>
-          <p>현재 습도 {todayWeather && todayWeather.main.humidity}%</p>
+          <h3>{todayWeather ? todayWeather.name : "Incheon"}</h3>
+          <p>현재 습도 {todayWeather ? todayWeather.main.humidity : 64}%</p>
         </div>
         <div>
           <img src={HumidityIcon} alt="날씨 이미지 아이콘" />
@@ -35,8 +35,8 @@ const SearchInfo = () => {
       </li>
       <li>
         <div>
-          <h3>{todayWeather && todayWeather.name}</h3>
-          <p>현재 풍속 {todayWeather && todayWeather.wind.deg}m/s</p>
+          <h3>{todayWeather ? todayWeather.name : "Incheon"}</h3>
+          <p>현재 풍속 {todayWeather ? todayWeather.wind.deg : 150}m/s</p>
         </div>
         <div>
           <img src={WindIcon} alt="날씨 이미지 아이콘" />
