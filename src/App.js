@@ -76,8 +76,6 @@ const App = () => {
       let response = await fetch(url);
       let data = await response.json();
 
-      console.log(response)
-
       if(response.status !== 200 || response.ok === false) {
         throw new Error("error")
       }
