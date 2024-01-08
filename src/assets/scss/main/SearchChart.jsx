@@ -26,8 +26,6 @@ const SearchChart = () => {
       forecastData.speed.push(forecastWeather[i].wind.speed)
     }
   }
-  
-  console.log(forecastWeather)
 
   const chartData = {
     labels: ["1", "2", "3", "4", "5"],

@@ -76,8 +76,10 @@ const App = () => {
       let response = await fetch(url);
       let data = await response.json();
 
-      if(data.message) {
-        throw new Error("도시이름을 찾을 수 없습니다.")
+      console.log(response)
+
+      if(response.status !== 200 || response.ok === false) {
+        throw new Error("error")
       }
 
       setTodayWeather(data);
@@ -96,8 +98,8 @@ const App = () => {
       let response = await fetch(url);
       let data = await response.json();
 
-      if(data.message) {
-        throw new Error("도시이름을 찾을 수 없습니다.")
+      if(response.status !== 200 || response.ok === false) {
+        throw new Error("error")
       }
 
       setForecastWeather(data.list);
