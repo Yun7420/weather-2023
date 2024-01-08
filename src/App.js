@@ -76,7 +76,7 @@ const App = () => {
       let response = await fetch(url);
       let data = await response.json();
 
-      if(data.cod) {
+      if(data.message) {
         throw new Error("도시이름을 찾을 수 없습니다.")
       }
 
@@ -96,7 +96,7 @@ const App = () => {
       let response = await fetch(url);
       let data = await response.json();
 
-      if(data.cod) {
+      if(data.message) {
         throw new Error("도시이름을 찾을 수 없습니다.")
       }
 
@@ -138,7 +138,7 @@ const App = () => {
           ) : apiError ? (
             <div className="errorBox">
               <div className="errorInfo">
-                <div>죄송합니다. 도시이름을 찾을 수 없습니다.</div>
+                <div>죄송합니다. <br /> 도시이름을 찾을 수 없습니다.</div>
                 <button onClick={() => window.location.reload()}>GO HOME</button>
               </div>
             </div>
