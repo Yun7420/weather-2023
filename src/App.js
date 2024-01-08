@@ -6,16 +6,25 @@ import Header from "./components/section/Header";
 import Main from "./components/section/Main";
 import Footer from "./components/section/Footer";
 
+// Npm
+import ClipLoader from "react-spinners/ClipLoader";
+
 // Provider 제공
 export const CurrentWeatherContext = createContext();
 
 const App = () => {
+  // 로딩 state
+  const [loading, setLoading] = useState(false);
+
   // 날씨 state
   const [todayWeather, setTodayWeather] = useState(null);
   const [forecastWeather, setForecastWeather] = useState(null);
 
   // 도시 state
   const [city, setCity] = useState(null);
+
+  // Api Error
+  const [apiError, setApiError] = useState(null);
 
   // 현재위치
   const getCurrentLocation = () => {
@@ -30,52 +39,72 @@ const App = () => {
   // 현재위치 기반 API 호출
   const getWeatherByCurrentLocation = async (latitude, longitude) => {
     try {
+      setLoading(true);
       let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=f497d00bd8c5301f301474a97dfbfba3&units=metric`;
       let response = await fetch(url);
       let data = await response.json();
 
       setTodayWeather(data);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setApiError(error);
+      setLoading(false);
     }
   };
 
   // 현재위치 기반 5일치 예보 API 호출
   const getForecastByCurrentLocation = async (latitude, longitude) => {
     try {
+      setLoading(true);
       let url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=f497d00bd8c5301f301474a97dfbfba3&units=metric`;
       let response = await fetch(url);
       let data = await response.json();
 
       setForecastWeather(data.list);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setApiError(error);
+      setLoading(false);
     }
   };
 
   // 도시이름 기반 Api 호출
   const getWeatherByCity = async () => {
     try {
+      setLoading(true);
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f497d00bd8c5301f301474a97dfbfba3&units=metric`;
       let response = await fetch(url);
       let data = await response.json();
 
+      if(data.cod) {
+        throw new Error("도시이름을 찾을 수 없습니다.")
+      }
+
       setTodayWeather(data);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setApiError(error);
+      setLoading(false);
     }
   };
 
   // 도시이름 기반 5일치 예보 API 호출
   const getForecastByCity = async () => {
     try {
+      setLoading(true);
       let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=f497d00bd8c5301f301474a97dfbfba3&units=metric`;
       let response = await fetch(url);
       let data = await response.json();
 
+      if(data.cod) {
+        throw new Error("도시이름을 찾을 수 없습니다.")
+      }
+
       setForecastWeather(data.list);
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setApiError(error);
+      setLoading(false);
     }
   };
 
@@ -90,17 +119,38 @@ const App = () => {
   }, [city]);
 
   // Provider 변수 모음
-  const currentWeather = { todayWeather, setTodayWeather, city, setCity, forecastWeather };
+  const currentWeather = {
+    todayWeather,
+    setTodayWeather,
+    city,
+    setCity,
+    forecastWeather,
+  };
 
   return (
     <div className="App">
       <div className="AppCover">
         <CurrentWeatherContext.Provider value={currentWeather}>
-          <div className="Wrapper">
-            <Header />
-            <Main />
-          </div>
-          <Footer />
+          {loading ? (
+            <div className="loading">
+              <ClipLoader color="#ffffff" loading={loading} size={100} />
+            </div>
+          ) : apiError ? (
+            <div className="errorBox">
+              <div className="errorInfo">
+                <div>죄송합니다. 도시이름을 찾을 수 없습니다.</div>
+                <button onClick={() => window.location.reload()}>GO HOME</button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="Wrapper">
+                <Header />
+                <Main />
+              </div>
+              <Footer />
+            </div>
+          )}
         </CurrentWeatherContext.Provider>
       </div>
     </div>
