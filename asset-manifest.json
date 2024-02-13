@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/weather-2023/static/css/main.c33b7686.css",
-    "main.js": "/weather-2023/static/js/main.07aeb43a.js",
+    "main.css": "/weather-2023/static/css/main.44288430.css",
+    "main.js": "/weather-2023/static/js/main.c4c77dd7.js",
     "static/media/backgroundImage.png": "/weather-2023/static/media/backgroundImage.b9d962104f858cab980e.png",
-    "static/media/temperatureIcon.svg": "/weather-2023/static/media/temperatureIcon.a5a1f5adbab9769983542e7902c9b1d0.svg",
-    "static/media/windIcon.svg": "/weather-2023/static/media/windIcon.524e748594ff4ab2ff7a75a5ccb220bc.svg",
-    "static/media/humidityIcon.svg": "/weather-2023/static/media/humidityIcon.3a69f32332f125ffcf4848d6cea52cdf.svg",
+    "static/media/temperatureIcon.svg": "/weather-2023/static/media/temperatureIcon.c6f06d871826dbf6da997b17f1959818.svg",
+    "static/media/windIcon.svg": "/weather-2023/static/media/windIcon.65e48e45088d96ab305e52ac463f1069.svg",
+    "static/media/humidityIcon.svg": "/weather-2023/static/media/humidityIcon.b978202e988107b886f248298c1a7316.svg",
     "index.html": "/weather-2023/index.html",
-    "main.c33b7686.css.map": "/weather-2023/static/css/main.c33b7686.css.map",
-    "main.07aeb43a.js.map": "/weather-2023/static/js/main.07aeb43a.js.map"
+    "main.44288430.css.map": "/weather-2023/static/css/main.44288430.css.map",
+    "main.c4c77dd7.js.map": "/weather-2023/static/js/main.c4c77dd7.js.map"
   },
   "entrypoints": [
-    "static/css/main.c33b7686.css",
-    "static/js/main.07aeb43a.js"
+    "static/css/main.44288430.css",
+    "static/js/main.c4c77dd7.js"
   ]
 }
