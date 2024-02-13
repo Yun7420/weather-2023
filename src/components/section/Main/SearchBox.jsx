@@ -22,6 +22,7 @@ const SearchBox = () => {
 
     dispatch({ type: "SEARCH_CITY", payload: { searchCity } });
     setSearchCity("");
+    setLiveSearch(false);
   };
 
   // 라이브 서치

@@ -9,7 +9,6 @@ import { getWeatherByCityAction } from "./redux/actions/getWeatherByCityAction";
 import { getForecastByCityAction } from "./redux/actions/getForecastByCityAction";
 // Components
 import Error from "./components/Error/Error";
-import Loading from "./components/Loading/Loading";
 import Header from "./components/section/Header";
 import Main from "./components/section/Main";
 import Footer from "./components/section/Footer";
@@ -17,7 +16,6 @@ import Footer from "./components/section/Footer";
 const App = () => {
   const dispatch = useDispatch();
 
-  const loading = useSelector((state) => state.loading.loading);
   const error = useSelector((state) => state.error.error);
   const city = useSelector((state) => state.city.city);
 
@@ -59,11 +57,6 @@ const App = () => {
       getForecastByCity();
     }
   }, [city]);
-
-  // 로딩
-  // if (loading) {
-  //   return <Loading />;
-  // }
 
   // 에러
   if (error) {
