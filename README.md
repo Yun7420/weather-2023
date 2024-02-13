@@ -51,6 +51,7 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 - Redux를 활용하여 State상태를 관리합니다.
 - Redux Middleware을 활용하여 Action을 통해 비동기 작업을 처리합니다.
 - Sass(SCSS)를 사용하여 CSS를 관리합니다.
+- 리액트 로딩 스켈레톤을 활용하여 API를 받아오는 로딩중 사용자에게 스켈레톤 UI를 보여줄 수 있습니다.
 - Git, GitHub을 사용하여 파일을 관리합니다.
 - build를 통해 코드와 파일, 이미지, CSS파일등을 패키징 합니다.
 
