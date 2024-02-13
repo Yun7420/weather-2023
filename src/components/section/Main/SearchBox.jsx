@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const liveSearchList = ["ANDORRA","UNITED ARAB EMIRATES","AFGHANISTAN","ANTIGUA AND BARBUDA","ANGUILLA","ALBANIA","ARMENIA","NETHERLANDS ANTILLES","ANGOLA","ANTARCTICA","ARGENTINA","AMERICAN SAMOA","AUSTRIA","AUSTRALIA","ARUBA"];
+const liveSearchList = ["Afghanistan", "Algeria", "Angola", "Bangladesh", "Belarus", "Belgium", "Cambodia", "Cameroon", "Canada", "Denmark", "Ecuador", "Egypt", "Germany", "Holland", "India", "Jordan", "Kenya", "Libya", "Mexico", "New Zealand", "Panama", "Russia", "Syria", "Uruguay", "Vietnam", "Wales", "Zambia"]; 
 
 const SearchBox = () => {
   const dispatch = useDispatch();
