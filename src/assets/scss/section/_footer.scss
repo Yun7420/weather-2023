@@ -1,15 +1,10 @@
-// Footer
-#Footer {
+// footer
+.footer {
     margin-top: 4rem;
     padding: 2rem 0;
 
     width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-top: 1px solid #fff;
+    border-top: 1px solid var(--white);
 
     text-align: center;
 }

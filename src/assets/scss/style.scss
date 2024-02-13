@@ -1,14 +1,16 @@
 @charset "UTF-8";
 
 // setting
-@import "setting/fonts";
-@import "setting/vars";
-@import "setting/reset";
-@import "setting/mixin";
-@import "setting/common";
+@import "setting/vars";     // 완료
+@import "setting/reset";    // 완료
+@import "setting/common";   // 완료
 
 // section
-@import "section/layout";
-@import "section/header";
+@import "section/layout";   // 완료
+@import "section/header";   // 완료
 @import "section/main";
-@import "section/footer";
+@import "section/footer";   // 완료
+
+// error
+@import "error/error";      // 완료
+@import "loading/loading";  // 완료

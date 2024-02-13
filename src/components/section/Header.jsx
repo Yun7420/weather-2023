@@ -1,12 +1,11 @@
 import React from "react";
-
-// 컴포넌트
-import Title from "../../assets/scss/header/Title";
-import CurrentLocalWeather from "../../assets/scss/header/CurrentLocalWeather";
+// Components
+import Title from "./Header/Title";
+import CurrentLocalWeather from "./Header/CurrentLocalWeather";
 
 const Header = () => {
   return (
-    <header id="Header">
+    <header className="header">
       <Title />
       <CurrentLocalWeather />
     </header>

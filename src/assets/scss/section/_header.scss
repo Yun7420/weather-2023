@@ -1,19 +1,15 @@
-// Header
-#Header {
-  padding: 4rem 0 3rem;
-  border-bottom: 1px solid #fff;
+// header
+.header {
+  padding: 4rem 0 0;
 
   .title {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 
-    div {
-      h1 {
-        margin-bottom: 0.5rem;
-
-        font-weight: bolder;
-      }
+    h1 {
+      font-weight: bolder;
     }
 
     h2 {
@@ -22,61 +18,51 @@
   }
 
   .currentLocalWeather {
-    margin-top: 3rem;
-    padding: 3rem;
+    margin-top: 2rem;
 
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    border: 1px solid #fff;
-    border-radius: 2rem;
+    padding: 4rem;
 
-    p {
-      h2 {
-        margin-top: 0.5rem;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 1rem;
 
+    div {
+      h3 {
+        font-size: 1.5rem;
         font-weight: bolder;
 
         span {
           color: #d36100;
-
-          font-size: 2rem;
         }
       }
     }
 
     img {
-      width: 80px;
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  #Header {
-    .currentLocalWeather {
-      img {
-        width: 60px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  #Header {
-    .title {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
+      width: 60px;
+      height: 60px;
     }
   }
 }
 
 @media only screen and (max-width: 500px) {
-  #Header {
+  .header {
+    .title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .currentLocalWeather {
+      flex-direction: column;
+
+      padding: 2rem;
+      
       img {
         width: 40px;
+        height: 40px;
       }
     }
   }

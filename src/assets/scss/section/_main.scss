@@ -1,5 +1,5 @@
-// Main
-#Main {
+// main
+.main {
   margin-top: 3rem;
 
   .searchBox {
@@ -7,59 +7,71 @@
       font-weight: bolder;
     }
 
-    form {
+    .searchbox {
       position: relative;
 
-      margin-top: 1rem;
+      margin-top: 2rem;
+
       width: 100%;
 
       input {
-        padding: 0.5rem 1.5rem;
+        padding: 0 2rem;
 
         width: 100%;
-        border-radius: 1rem;
-        background-color: #fff;
-        opacity: 0.5;
+        height: 40px;
+        background-color: var(--white);
+        box-shadow: 1px 1px 10px var(--black);
+        color: var(--black);
       }
-    }
 
-    .keyword {
-      margin-top: 1rem;
-      padding: 0 1.5rem;
+      .live_search_box {
+        position: absolute;
 
-      display: flex;
-      gap: 1.5rem;
-
-      ul {
-        padding-left: 1.5rem;
+        padding: 0 2rem;
 
         display: flex;
-        gap: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
 
-        border-left: 2px solid #fff;
+        width: 100%;
+        max-height: 0;
+        background-color: var(--white);
+        color: var(--black);
+
+        overflow: hidden;
+        transition: all 0.5s;
+      }
+
+      .live_search_box.on {
+        padding: 1rem 2rem;
+        
+        width: 100%;
+        max-height: 500px;
+
+        overflow-y: scroll;
       }
     }
   }
 
   .searchInfo {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 
     li {
-      flex: 1;
-
-      padding: 2rem 1.5rem;
-      border-radius: 1rem;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      div:nth-of-type(1) {
+      padding: 2rem;
+
+      width: 100%;
+      border-radius: 1rem;
+
+      div {
         h3 {
           font-weight: bolder;
         }
@@ -69,14 +81,9 @@
         }
       }
 
-      div:nth-of-type(2) {
-        width: 70px;
-        height: 70px;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
+      img {
+        width: 60px;
+        height: 60px;
       }
     }
 
@@ -113,13 +120,13 @@
 
   .searchChart {
     margin-top: 3rem;
-    padding: 2.5rem;
-
-    border-radius: 2rem;
-    background-color: rgba(0, 0, 0, 0.5);
 
     h2 {
       font-weight: bolder;
+    }
+
+    .chart {
+      margin-top: 2rem;
     }
   }
 
@@ -131,32 +138,34 @@
     }
 
     ul {
-      margin-top: 1rem;
-      padding: 1rem;
+      margin-top: 2rem;
 
       display: flex;
       flex-direction: column;
       gap: 1rem;
 
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 1rem;
-
       li {
-        padding: 0.5rem 1rem;
-
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 2rem;
 
+        padding: 1rem;
+
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 1rem;
+
         div {
           display: flex;
+          justify-content: space-between;
           align-items: center;
 
-          width: 120px;
+          p {
+            width: 80px;
+          }
 
           img {
-            width: 30px;
+            width: 20px;
           }
         }
 
@@ -169,21 +178,14 @@
 }
 
 @media only screen and (max-width: 900px) {
-  #Main {
+  .main {
     .searchInfo {
       flex-direction: column;
 
       li {
-        width: 100%;
-
-        div:nth-of-type(2) {
-          width: 50px;
-          height: 50px;
-
-          img {
-            width: 100%;
-            height: 100%;
-          }
+        img {
+          width: 40px;
+          height: 40px;
         }
       }
     }
@@ -191,13 +193,8 @@
     .forecastWeather {
       ul {
         li {
-          padding: 1.5rem 1rem;
-
           flex-direction: column;
           align-items: flex-start;
-          gap: 1rem;
-
-          border-bottom: 1px solid #6e6e6e;
 
           div {
             display: flex;
@@ -205,15 +202,7 @@
             align-items: center;
 
             width: 100%;
-
-            img {
-              width: 30px;
-            }
           }
-        }
-
-        li:last-child {
-          border: none;
         }
       }
     }

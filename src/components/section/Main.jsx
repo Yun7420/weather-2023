@@ -1,14 +1,13 @@
 import React from "react";
-
-// 컴포넌트
-import SearchBox from "../../assets/scss/main/SearchBox";
-import SearchInfo from "../../assets/scss/main/SearchInfo";
-import SearchChart from "../../assets/scss/main/SearchChart";
-import ForecastWeather from "../../assets/scss/main/ForecastWeather";
+// Components
+import SearchBox from "./Main/SearchBox";
+import SearchInfo from "./Main/SearchInfo";
+import SearchChart from "./Main/SearchChart";
+import ForecastWeather from "./Main/ForecastWeather";
 
 const Main = () => {
   return (
-    <div id="Main">
+    <div className="main">
       <SearchBox />
       <SearchInfo />
       <SearchChart />
