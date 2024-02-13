@@ -11,16 +11,15 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 
 - 현재 날짜를 표시할 수 있는 코드를 작성
 - 사용자의 현재 위도와 경도를 받아 올 수 있는 코드를 작성
-- fetch를 활용하여 조건에 따라 Weather API를 받아오고 try에서 데이터 처리 catch에서는 error를 처리하는 코드를 작성
+- fetch를 활용하여 Weather API를 받아오고 try에서 데이터 처리 catch에서는 error를 처리하는 코드를 작성
 - fetch에서 처리한 error는 에러발생 화면으로 이동하며 window.location.reload()를 통해서 새로고침할 수 있는 코드를 작성
-- 5일치 기상예보를 보여주기 위해 40개의 데이터를 slice와 map을 활용하여 5개만 추출할 수 있는 코드를 작성
 - 라이브서치에서 toLowerCase를 활용하여 입력된 값을 소문자로 바꿔주고 include를 활용하여 단어를 포함하고 있는 목록을 filter를 통해 선별할 수 있음
 
 3. React 활용
 
 - 디자인한 내용을 Component로 구성함으로써 Component의 관리, 재사용성에 대해서 생각하기
-- Array.map을 활용하여 Component를 반복하여 목록을 보여주고 slice를 통해 map의 갯수를 제어함
 - useEffect를 활용하여 State값에 따라 불러올 API의 종류가 달라짐
+- Array.map을 활용하여 Component를 반복하여 목록을 보여주고 slice를 통해 map의 갯수를 제어함
 - onFocus, onBlur를 통해 포커싱에 따른 State값이 변동됨
 - 삼항 연산자를 활용하여 className 속성에 CSS효과 적용
 
@@ -28,7 +27,7 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 
 - Provider와 store를 통해 State가 필요한 Component에 보내줄 수 있음
 - useDispatch를 활용하여 type, payload값을 reducer의 action인자에 제공할 수 있음
-- type과 payload 활용하여 switch문으로 받아온 type에 따라 state값을 변경할 수 있음
+- type과 payload 활용하여 switch문으로 state값을 변경할 수 있음
 - fetch와같은 비동기적 작업을 처리하기 위해 applyMiddleware을 활용하여 thunk를 제공
 - 비동기적 작업을 처리하기 위해서는 useDispatch로 Middleware에 도달한 후 받아온 데이터를 다시한번 useDispatch로 reducer에 제공
 - combineReducers를 통해 State를 관리하는 reducer을 통합하고 객체형태로 제공
@@ -67,8 +66,8 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 
 ## 프로젝트 참고 사이트
 
-1. Redux공식 홈페이지 (https://ko.redux.js.org/introduction/getting-started/)
-2. Redux combineReducers공식 홈페이지 (https://ko.redux.js.org/api/combinereducers/)
+1. Redux 홈페이지 (https://ko.redux.js.org/introduction/getting-started/)
+2. Redux combineReducers 홈페이지 (https://ko.redux.js.org/api/combinereducers/)
 3. Redux Middlware thunk 제공 (https://github.com/reduxjs/redux-thunk)
 4. Sass(SCSS) 설치오류 해결 (https://xionwcfm.tistory.com/261) || (https://oddcode.tistory.com/197)
 5. 로딩 스켈레톤 제공 (https://www.npmjs.com/package/react-loading-skeleton)
@@ -161,7 +160,21 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 
 ```
   {forecastWeather && forecastWeather.slice(0,5).map((forecast, index) => (
-    <li key={index}></li>
+    <li key={index}>
+      <div>
+        <p>{dates + index}일 예보</p>
+        <img
+          src={
+            forecast 
+            ? process.env.PUBLIC_URL + `/image/weather${forecast.weather[0].icon}.svg` 
+            : process.env.PUBLIC_URL + `/image/weather13d.svg`
+          }
+          alt="날씨 이미지"
+        />
+      </div>
+      <p>날씨 예상으로 온도 {forecast ? forecast.main.temp : -1.05}도, 습도 {forecast ? forecast.main.humidity : 65}%, 풍속 {forecast ? forecast.wind.speed : 2.5}ms 기상청에서 예상하고 있습니다.</p>
+      <b>{forecast ? forecast.weather[0].main : "Snow"}</b>
+    </li>
   ))}
 ```
 
@@ -178,6 +191,112 @@ JavaScript, React, Redux, Sass(SCSS)를 활용하여 만든 날씨 프로젝트�
 ```
 
 ### Redux
+
+1. Redux 초기셋팅
+
+```
+  // React-Redux
+  import { Provider } from "react-redux";
+  // Redux
+  import { createStore } from "redux";
+  import { applyMiddleware } from "redux";
+  // Reducer
+  import reducer from "./redux/combinedReducer";
+  // Redux-Thunk
+  import { thunk } from "redux-thunk";
+  
+  const store = createStore(reducer, applyMiddleware(thunk));
+  
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+```
+
+2. Redux를 활용한 State관리
+
+```
+  const initialState = {
+    todayWeather: null,
+    forecastWeather: null,
+  };
+
+  function weatherReducer(state = initialState, action) {
+    const { type, payload } = action;
+  
+    switch (type) {
+      case "TODAY_WEATHER":
+        return {
+          ...state,
+          todayWeather: payload.data,
+        };
+  
+      case "FORECAST_WEATHER":
+        return {
+          ...state,
+          forecastWeather: payload.data.list,
+        };
+  
+      default:
+        return {
+          ...state,
+        };
+    }
+  }
+  
+  export default weatherReducer;
+```
+
+3. React Middleware를 활용한 API 비동기 처리
+
+```
+  function weatherByCurrentLocation(latitude, longitude) {
+    return async (dispatch, getState) => {
+      try {
+        dispatch({ type: "LOADING" });
+  
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=f497d00bd8c5301f301474a97dfbfba3&units=metric`;
+        let response = await fetch(url);
+        let data = await response.json();
+  
+        if (response.status !== 200 || response.ok === false) {
+          throw new Error("error");
+        }
+  
+        dispatch({ type: "TODAY_WEATHER", payload: { data } });
+        dispatch({ type: "UNLOADING" });
+      } catch (error) {
+        dispatch({ type: "ERROR", payload: { error } });
+        dispatch({ type: "UNLOADING" });
+      }
+    };
+  }
+
+  export const getWeatherByCurrentLocationAction = { weatherByCurrentLocation };
+```
+
+4. Redux combinedReducer
+
+```
+  // Redux
+  import { combineReducers } from "redux";
+  // Reducer
+  import loadingReducer from "./reducers/loading";
+  import errorReducer from "./reducers/error";
+  import weatherReducer from "./reducers/weather";
+  import cityReducer from "./reducers/city";
+  
+  const reducer = combineReducers({
+    loading: loadingReducer,
+    error: errorReducer,
+    weather: weatherReducer,
+    city: cityReducer,
+  });
+  
+  export default reducer;
+```
 
 ## 프로젝트를 하면서 느낀점
 
